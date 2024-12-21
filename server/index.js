@@ -4,13 +4,15 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.SERVER_PORT || 8000;
+const MONGODB_USER = process.env.DB_USER;
+const MONGODB_PASSWORD = process.env.DB_PASSWORD;
 
 app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://webapp:123@cluster0.uqcpc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@cluster0.uqcpc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Define a schema and model
 const genderRevealSchema = new mongoose.Schema({

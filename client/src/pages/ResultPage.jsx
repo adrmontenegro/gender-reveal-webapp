@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Importa axios
 import './ResultPage.css'; // Para los estilos
 import NameLabel from '../components/NameLabel';
-
+const API_URL = process.env.API_URL;
 const ResultPage = () => {
     const [seconds, setSeconds] = useState(10);
     const [finished, setFinished] = useState(false);
@@ -30,7 +30,7 @@ const ResultPage = () => {
     // Función para obtener el resultado de la API
     const fetchResult = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/gender-reveal/result'); // Cambia la URL según tu configuración
+            const response = await axios.get(`${API_URL}/api/gender-reveal/result`); // Cambia la URL según tu configuración
             setResult(response.data.gender); // Almacena el género en el estado
             setTimeout(() => {
                 setShowName(true); // Muestra el nombre después de 10 segundos
